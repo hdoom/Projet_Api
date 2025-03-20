@@ -4,12 +4,14 @@ FROM python:3.9-slim
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le fichier requirements.txt et installer les dépendances
-#COPY requirements.txt ./
+# Installation des dépendances système nécessaires pour git
+RUN apt-get update && apt-get install -y git
+
+# Installer les dépendances Python
 RUN pip install --upgrade pip
-RUN pip install python-opensky-api
+RUN pip install flask
 RUN pip install python-dotenv
-#RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install git+https://github.com/openskynetwork/opensky-api.git#subdirectory=python
 
 # Copier le reste du code de l'application
 COPY . .

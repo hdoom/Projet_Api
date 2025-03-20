@@ -1,0 +1,3 @@
+python-opensky-api
+python-dotenv
+flask
